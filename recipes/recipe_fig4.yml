@@ -1,0 +1,548 @@
+input:
+
+###--------------------------------------------------------------------------###
+# DEFINE THE TYPE OF ANALYSIS TO DO: WHOLE BIOREFINERY VS SUBSYSTEMS           #
+###--------------------------------------------------------------------------###
+
+  analyses:
+
+    #### CONTRIBUTION ANALYSIS PER SUBSYSTEM FOR THE WHOLE BIOREIFNERY ###
+    # plot a graph to show the contribution of each of the subsystem to the overall
+    # environmental impacts of the biorefinery
+    CA_subsystems:
+      relative_stacked_bar_plot: False  # this one makes sense when comparing the subsystems only
+      bar_chart_one_ic: True # this one compares the databases but doesn't give the contribution of each activity
+
+    ### CONTRIBUTION ANALYSIS PER PROCESS FOR EACH SUBSYSTEM ###
+    # plot one graph per subsystem to show the contribution of each activity to the
+    # overall environmental impacts of the subsystem
+    # can only plot one graph at a time (i.e. set only one graph type to "True")
+    CA_processes:
+      relative_stacked_bar_plot: False
+      pie_chart_stacked_bar_plot: False
+      stacked_bar_plot_comparison: False
+      
+    CA_input_category:
+      stacked_bar_plot: False
+      heatmap: False
+     
+    allocation: # perform a mass or economic allocation on S2, S12, or S123
+      allocation_S2: False
+      allocation_S12: False      
+      allocation_S123: False 
+      
+###--------------------------------------------------------------------------###
+# FOR EACH TYPE OF ANALYSIS, SET THE PARAMETERS                                #
+###--------------------------------------------------------------------------###
+
+#### CONTRIBUTION ANALYSIS PER SUBSYSTEM FOR THE WHOLE BIOREIFNERY ###
+
+
+  CA_subsystems:
+
+    scaling:
+      # ref S1: dry spangles (period 1: 28.78 kg DW-eq, period 2: 28.78 kg DW-eq)
+      db_S1tech_1: 28.78
+      db_S1tech_2: 28.78  
+      # ref S2: blue extract UF2 (period 1: 4.86 kg DW-eq, period 2: 5.70 kg DW-eq)
+      db_S2tech_1: 5.70
+      db_S2tech_2: 5.70
+      # ref S3: CPA concentrate (period 1: 1.36 kg DW-eq, period 2: 3.46 kg DW-eq)
+      db_S3tech_1: 3.46  
+      db_S3tech_2: 3.46  
+      # infrastructures and operation not scaled
+      db_infrastructurestech_1: 1
+      db_infrastructurestech_2: 1
+      db_operationtech_1: 1
+      db_operationtech_2: 1
+      # transport scaled     
+      db_transport_S12tech_1: 28.78
+      db_transport_S12tech_2: 28.78
+      db_transport_S23tech_1: 5.70
+      db_transport_S23tech_2: 5.70
+
+    relative_stacked_bar_plot: # relative contribution of each subsystem to all ICs
+      databases: # select one period only (either tech1 or tech2)
+        #- db_S1tech_1
+        #- db_S2tech_1
+        #- db_S3tech_1
+        #- db_infrastructurestech_1
+        #- db_operationtech_1
+        #- db_transport_S12tech_1
+        #- db_transport_S23tech_1
+        - db_S1tech_2
+        - db_S2tech_2
+        - db_S3tech_2
+        - db_infrastructurestech_2
+        - db_operationtech_2
+        - db_transport_S12tech_2
+        - db_transport_S23tech_2
+        
+      lcia_methods: # all the ICs appear in the same graph
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
+
+    bar_chart_one_ic: # comparison of LCA scores for all databases for a specific IC
+      databases:
+        - db_S1tech_1
+        - db_S1tech_2
+        - db_S2tech_1
+        - db_S2tech_2
+        - db_S3tech_1
+        - db_S3tech_2  
+        - db_operationtech_1    
+        - db_operationtech_2
+        - db_transport_S12tech_1
+        - db_transport_S12tech_2
+        - db_transport_S23tech_1
+        - db_transport_S23tech_2
+        
+      lcia_methods: # one graph per IC
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
+
+
+### CONTRIBUTION ANALYSIS PER PROCESS FOR EACH SUBSYSTEM ###
+
+  CA_processes:
+
+    relative_stacked_bar_plot: # do one database at a time
+      databases:
+        - db_S1tech_1
+        - db_S2tech_1
+        - db_S3tech_1
+        - db_infrastructurestech_1
+        - db_operationtech_1
+        - db_transport_S12tech_1
+        - db_transport_S23tech_1
+        - db_S1tech_2
+        - db_S2tech_2
+        - db_S3tech_2
+        - db_infrastructurestech_2
+        - db_operationtech_2
+        - db_transport_S12tech_2
+        - db_transport_S23tech_2      
+
+      lcia_methods:
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
+
+    pie_chart_stacked_bar_plot:
+      databases:
+        - db_S1tech_2
+        - db_S2tech_2
+        - db_S3tech_2
+
+      lcia_methods:
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+        #- !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+
+    stacked_bar_plot_comparison:
+      databases: # the databases to compare must have the same activities
+        - db_S2tech_1
+        - db_S2tech_2
+             
+      lcia_methods:
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+      #- !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
+
+        
+### CONTRIBUTION ANALYSIS PER PROCESS FOR EACH SUBSYSTEM ###
+
+  CA_input_category:
+
+    stacked_bar_plot: # do one impact category at a time
+    
+      databases:
+        - db_S1tech_1
+        - db_S1tech_2     
+        - db_S2tech_1  
+        - db_S2tech_2
+        - db_S3tech_1        
+        - db_S3tech_2 
+        - db_infrastructurestech_1        
+        - db_infrastructurestech_2
+        - db_operationtech_1        
+        - db_operationtech_2
+        - db_transport_S12tech_1        
+        - db_transport_S12tech_2
+        - db_transport_S23tech_1
+        - db_transport_S23tech_2  
+
+      lcia_methods:
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+      - !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
+      
+    heatmap:
+      scaling: # scaling of S1, S2, and S3 for the heatmap
+        db_S1tech_2: 28.78  
+        db_S2tech_2: 5.70
+        db_S3tech_2: 3.46     
+        db_infrastructurestech_2: 1
+        db_operationtech_2: 1
+        db_transport_S12tech_2: 28.78
+        db_transport_S23tech_2: 5.70
+        
+      databases: # uses the three databases and aggregates the LCA results
+        - db_S1tech_2
+        - db_S2tech_2
+        - db_S3tech_2
+        - db_infrastructurestech_2
+        - db_operationtech_2
+        - db_transport_S12tech_2
+        - db_transport_S23tech_2  
+         
+      lcia_methods:
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
+        
+  
+### ALLOCATION OF ENVIRONMENTAL IMPACTS FOR S2, S12, AND S123 ###
+  
+  allocation: ## allocation only works with 1 tech period for now
+
+    allocation_S2: # do the allocation for S2 only and GWP (no scaling needed)
+
+      databases:    
+        - db_S2tech_2 
+        
+      scaling_factors: # no scaling for the analysis of S2 only
+        db_S2tech_2: 1
+        
+      lcia_methods:
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+      
+      allocation_factors: # possibility to add economic allocation below
+        mass:
+          blue_extract: 0.23
+          CPA_unprocessed: 0.428
+          CPD_concentrate: 0.342   
+          
+    allocation_S12: # do the allocaiton for S2 only and GWP (no scaling needed)
+
+      databases:    
+        - db_S1tech_2  
+        - db_S2tech_2
+        
+      scaling_factors: # scaling of S1 and S2 to produce 1 kg of blue extract
+        db_S1tech_2: 5.05 # 28.78/5.70  
+        db_S2tech_2: 1 # 5.70/5.70
+      
+      lcia_methods:
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+        
+      allocation_factors: # possibility to add economic allocation below
+        mass:
+          blue_extract: 0.23
+          CPA_unprocessed: 0.428
+          CPD_concentrate: 0.342   
+        
+    allocation_S123: # do the allocaiton for S2 only and GWP (no scaling needed)
+
+      databases:    
+        - db_S1tech_2     
+        - db_S2tech_2
+        - db_S3tech_2 
+        - db_infrastructurestech_2
+        - db_operationtech_2
+        - db_transport_S12tech_2
+        - db_transport_S23tech_2         
+
+      scaling_factors: # scaling of S1 and S2 to produce 1 kg of blue extract
+        db_S1tech_2: 5.05 # 28.78/5.70  
+        db_S2tech_2: 1 # 5.70/5.70
+        db_S3tech_2: 0.61 # 3.46/5.70
+        db_infrastructurestech_2: 0.175 # 1/5.70
+        db_operationtech_2: 0.175 # 1/5.70
+        db_transport_S12tech_2: 5.05 # 28.78
+        db_transport_S23tech_2 : 1 # 5.70      
+
+      lcia_methods:
+        - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+        
+      allocation_factors: # possibility to add economic allocation below
+        mass:
+          blue_extract: 0.32
+          CPA_concentrate: 0.20
+          CPD_concentrate: 0.48  
+        economic:
+          blue_extract: 0.90
+          CPA_concentrate: 0.087
+          CPD_concentrate: 0.012        
+
+#-------------------------------------------------------------------------------
+# DEFINE THE ACTIVITY NAMES IN THE DATABASES STUDIED
+#-------------------------------------------------------------------------------
+  nomenclature:
+    db_S1tech_1: S1_2019  
+    db_S1tech_2: S1_2022
+    db_S2tech_1: S2_2021
+    db_S2tech_2: S2_2022
+    db_S3tech_1: S3_2021
+    db_S3tech_2: S3_2022
+    db_transport_S12tech_1: transport_S12_2019
+    db_transport_S12tech_2: transport_S12_2022
+    db_transport_S23tech_1: transport_S23_2021
+    db_transport_S23tech_2: transport_S23_2022  
+    db_infrastructurestech_1: infrastructures_2019  
+    db_infrastructurestech_2: infrastructures_2022
+    db_operationtech_1: operation_2019
+    db_operationtech_2: operation_2022    
+    
+
+  all_databases:
+  
+    db_transport_S12tech_1:
+      FU_activity_name: S12A8Transport
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S12A8Transport
+
+    db_transport_S12tech_2:
+      FU_activity_name: S12A8Transport
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S12A8Transport 
+  
+    db_transport_S23tech_1:
+      FU_activity_name: S23A8Transport
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S23A8Transport
+
+    db_transport_S23tech_2:
+      FU_activity_name: S23A8Transport
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S23A8Transport   
+  
+    db_infrastructurestech_1:
+      FU_activity_name: S1A0Building
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S1A0Building     
+  
+    db_infrastructurestech_2:
+      FU_activity_name: S1A0Building
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S1A0Building      
+    
+    db_operationtech_1:
+      FU_activity_name: S1A0Operation
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S1A0Operation      
+    
+    db_operationtech_2:
+      FU_activity_name: S1A0Operation
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S1A0Operation        
+    
+    db_S1tech_1:
+      FU_activity_name: S1A5Drying
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:          
+        - S1A1Cultivation
+        - S1A2Filtration
+        - S1A3Dewatering
+        - S1A4Shaping
+        - S1A5Drying
+        - S1A6Packaging
+  
+    db_S1tech_2:
+      FU_activity_name: S1A5Drying
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:
+        - S1A1Cultivation
+        - S1A2Filtration
+        - S1A3Dewatering
+        - S1A4Shaping
+        - S1A5Drying
+        - S1A6Packaging
+        
+    db_S2tech_1:
+      FU_activity_name: S2A5Ultrafiltration2
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:
+        - S2A1Maceration
+        - S2A2Centrifugation
+        - S2A3Filtration
+        - S2A4Ultrafiltration1
+        - S2A5Ultrafiltration2
+        - S2A6Concentration
+        - S2A7aPackaging
+        - S2A7bPackaging
+        - S2A7cPackaging  
+  
+    db_S2tech_2:
+      FU_activity_name: S2A5Ultrafiltration2
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:
+        - S2A1Maceration
+        - S2A2Centrifugation
+        - S2A3Filtration
+        - S2A4Ultrafiltration1
+        - S2A5Ultrafiltration2
+        - S2A6Concentration
+        - S2A7aPackaging
+        - S2A7bPackaging
+        - S2A7cPackaging        
+         
+    db_S3tech_1:
+      FU_activity_name: S3A4Concentration
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:
+        - S3A1Extraction
+        - S3A2Diafiltration
+        - S3A3Ultrafiltration
+        - S3A4Concentration
+        - S3A5Packaging
+        - S3A6STabilisation
+
+    db_S3tech_2:
+      FU_activity_name: S3A4Concentration
+      FU_value: 1
+      FU_unit: unit
+      CA_activities:
+        - S3A1Extraction
+        - S3A2Diafiltration
+        - S3A3Ultrafiltration
+        - S3A4Concentration
+        - S3A5Packaging
+        - S3A6STabilisation
+        
+   
+#-------------------------------------------------------------------------------
+# DEFINE THE LCIA METHODS TO USE
+#-------------------------------------------------------------------------------
+
+  lcia_methods :
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, agricultural land occupation, ALOP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, climate change, GWP100]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater ecotoxicity, FETPinf]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, freshwater eutrophication, FEP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, fossil depletion, FDP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, human toxicity, HTPinf]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, ionising radiation, IRP_HE]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine ecotoxicity, METPinf]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, marine eutrophication, MEP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, metal depletion, MDP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, natural land transformation, NLTP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, ozone depletion, ODPinf]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, particulate matter formation, PMFP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, photochemical oxidant formation, POFP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial acidification, TAP100]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, terrestrial ecotoxicity, TETPinf]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, urban land occupation, ULOP]
+    - !!python/tuple [ReCiPe Midpoint (H) V1.13, water depletion, WDP]
