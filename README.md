@@ -10,10 +10,5 @@ This repository contains all the code, data, and documents required to reproduce
 
 **Environmental life cycle assessment of a European pilot scale Spirulina biorefinery producing food, feed, cosmetic, and agricultural ingredients**
 
-Braud L.<sup>a,b,*</sup>, McDonnell K.<sup>a</sup>, Murphy F.<sup>a,b</sup>
-
-<sup>a</sup>*School of Biosystems and Food Engineering, University College Dublin, Belfield, Dublin 4, Ireland*
-
-<sup>b</sup>*BiOrbic, Bioeconomy SFI Research Center, University College Dublin, Belfield, Dublin 4, Ireland*
 
 
