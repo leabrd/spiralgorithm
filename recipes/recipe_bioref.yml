@@ -1,0 +1,16 @@
+input:
+
+  main_output:
+
+    S1:
+      act_name: S1A5Drying
+      exc_name: dry_spangles
+      scaling_factor: 28.78
+    S2:
+      act_name: S2A5Ultrafiltration2
+      exc_name: blue_extract_UF2
+      scaling_factor: 5.70
+    S3: 
+      act_name: S3A4Concentration
+      exc_name: concentrate
+      scaling_factor: 3.46
