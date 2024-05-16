@@ -1,0 +1,214 @@
+---
+input:
+
+  conditions:
+    # ambient temperature [°C]
+    T_amb : 
+      amount : 16.5 
+      unit : °C
+    # temperature of the feed material [°C]
+    T_feed : 
+      amount : 16.5
+      unit : °C
+    # temperature of the digester [°C] 
+    T_dig : 
+      amount : 37
+      unit : °C
+    # type of temperature regime
+    temperature_regime :
+      amount : mesophilic
+      unit : None
+    # adjustment for imperfect mixing
+    imperfect_mixing_adjustment :
+      amount : True
+      unit : None
+    # digester tank height [m]  
+    tank_height :
+      amount : 6
+      unit : m
+    # digester tank diameter [m]
+    tank_diameter :
+      amount : 17.9
+      unit : m
+    # retention time [day]
+    RT : 
+      amount : 55
+      unit : day
+    # AD capcity [kW]
+    AD_capacity:
+      amount : 150
+      unit : kW
+    # number of working days [day] 
+    working_days : 
+      amount : 330
+      unit : day
+    # heat capacity of the feedstock (same as water)
+    HC_feed : 
+       amount : 4.18
+       unit : kJ/kg°C 
+
+
+  feedstocks:
+  
+    grass_silage:
+    
+      # feedstock flow rate [t/day]
+      m_feed : 
+        amount : 3.62
+        unit : t/day
+      # total solids [%]
+      TS% : 
+        amount : 23
+        unit : mass%  
+      # volatile solids [% TS]     
+      VS% : 
+        amount : 92
+        unit : mass%TS
+      # potential biogas yield [m3/t VS]   
+      Y_pBG_VS : 
+        amount : 651
+        unit : m3/t VS        
+      # potential biogas yield [m3/t FF] 
+      Y_pBG_FF : 
+        amount : 137.8
+        unit : m3/t FF   
+      # methane content of the biogas [% CH4] 
+      CH4% : 
+        amount : 55
+        unit : mass%            
+      # density of the feedstock [t/m3] 
+      d : 
+        amount : 0.485 
+        unit : t/m3     
+      # nitrogen content [mass% of TS]
+      N% : 
+        amount : 4 # TO UPDATE
+        unit : mass% of TS      
+      # P2O5 content [mass% of TS]
+      P2O5% : 
+        amount : 2.2 # TO UPDATE
+        unit : mass% of TS     
+       # K2O content [mass% of TS]
+      K2O% : 
+        amount : 8.9 # TO UPDATE
+        unit : mass% of TS  
+ 
+   
+      
+    cattle_slurry:
+    
+      # feedstock flow rate [t/day]
+      m_feed : 
+        amount : 16.84
+        unit : t/day
+      # total solids [%]
+      TS% : 
+        amount : 8.8
+        unit : mass%  
+      # volatile solids [% TS]     
+      VS% : 
+        amount : 78
+        unit : mass%TS
+      # potential biogas yield [m3/t VS]   
+      Y_pBG_VS : 
+        amount : 288
+        unit : m3/t VS        
+      # potential biogas yield [m3/t FF] 
+      Y_pBG_FF : 
+        amount : 19.67
+        unit : m3/t FF   
+      # methane content of the biogas [% CH4] 
+      CH4% : 
+        amount : 64.5 
+        unit : mass%            
+      # density of the feedstock [t/m3] 
+      d : 
+        amount : 0.986
+        unit : t/m3     
+      # nitrogen content [mass% of TS]
+      N% : 
+        amount : 3.5 # TO UPDATE
+        unit : mass% of TS      
+      # P2O5 content [mass% of TS]
+      P2O5% : 
+        amount : 1.7 # TO UPDATE
+        unit : mass% of TS     
+       # K2O content [mass% of TS]
+      K2O% : 
+        amount : 6.3 # TO UPDATE
+        unit : mass% of TS      
+
+  CHP:
+  
+    # calorific value of methane [kWh/m3]
+    CV_CH4 : 
+      amount : 11.06
+      unit : kWh/m3   
+      
+    # electricity generation efficicency
+    elec_gen_eff : 
+      amount : 37
+      unit : en%     
+      
+    # heat generation efficicency
+    heat_gen_eff : 
+      amount : 53
+      unit : en%      
+      
+    # electricity reused in the AD plant
+    elec_reused_AD : 
+      amount : 25 # TO UPDATE
+      unit : kW
+      
+    # electricity reused elsewhere on-site
+    elec_reused_others : 
+      amount : 25 # TO UPDATE
+      unit : kW        
+
+    # heat reused in the AD plant
+    heat_reused_AD : 
+      amount : 32 # TO UPDATE
+      unit : kW
+      
+    # heat reused elsewhere on-site
+    heat_reused_others : 
+      amount : 25 # TO UPDATE
+      unit : kW  
+
+  heat_transfer:
+  
+    # heat loss through the digester wall (300 mm thick concrete)
+    wall_concrete_300mm : 
+    
+      U :
+        amount : 0.7 # TO UPDATE
+        unit : W/m2°C
+        
+      A :
+        amount : 616 # TO UPDATE
+        unit : m2
+  
+      delta_T :
+        amount : 16.5
+        unit : °C  
+  
+    # heat loss through the digester lid (100 mm thick concrete)
+    lid_concrete_100mm : 
+    
+      U :
+        amount : 1.4 # TO UPDATE
+        unit : W/m2°C
+        
+      A :
+        amount : 154 # TO UPDATE
+        unit : m2
+  
+      delta_T :
+        amount : 16.5
+        unit : °C  
+            
+      
+      
+      
+        
+      
