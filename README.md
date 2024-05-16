@@ -6,9 +6,9 @@ This project aimed at **revisiting the Spirulina value chain** to convert the re
 
 
 
-This repository contains all the code, data, and documents required to reproduce the following studies (submitted for publication): 
+This repository contains all the **code, data, and documents required to reproduce the following studies** (submitted for publication): 
 
-- **Environmental life cycle assessment of a European pilot scale Spirulina biorefinery producing food, feed, cosmetic, and agricultural ingredients**
-- **Integration of a pilot scale Spirulina biorefinery into a local bioeconomy: Comparative life cycle assessment of potential environmental mitigation strategies**
+- Environmental life cycle assessment of a European pilot scale Spirulina biorefinery producing food, feed, cosmetic, and agricultural ingredients
+- Integration of a pilot scale Spirulina biorefinery into a local bioeconomy: Comparative life cycle assessment of potential environmental mitigation strategies
 
 
