@@ -1,4 +1,5 @@
-# spiralgorithm
+![Copy of sustainity](https://github.com/user-attachments/assets/91f44711-fa06-42b6-b06c-3c29eaea77c6)
+
 
 This repository contains the code that was used to perform the **environmental life cycle assessment (LCA)** of the SpiralG biorefinery. This work was conducted in the frame of the **Circular Bio-based Europe Joint Undertaking (CBE-JU) project "SpiralG"** that started in 2018 and ended in 2023. 
 
