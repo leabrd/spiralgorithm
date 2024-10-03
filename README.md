@@ -9,4 +9,6 @@ This repository contains all the **code, data, and documents required to reprodu
 - *Beyond phycocyanin: Environmental life cycle assessment of a European pilot scale Spirulina biorefinery*
 - *Integration of a pilot scale Spirulina biorefinery into a local bioeconomy: Comparative life cycle assessment of potential environmental mitigation strategies*
 
+## Schematic diagram of the SpiralG biorefinery:
+
 ![schematic_diagram_BITER_oct24](https://github.com/user-attachments/assets/0f1a4a8b-0d6c-43bb-8271-546b9a19bb84)
