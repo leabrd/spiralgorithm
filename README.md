@@ -6,8 +6,8 @@ This project aimed at **revisiting the Spirulina value chain** to convert the re
 
 This repository contains all the **code, data, and documents required to reproduce the following studies** (submitted for publication): 
 
-- *Beyond phycocyanin: Environmental life cycle assessment of a European pilot scale Spirulina biorefinery*
-- *Integration of a pilot scale Spirulina biorefinery into a local bioeconomy: Comparative life cycle assessment of potential environmental mitigation strategies*
+- **L. Braud**, K. McDonnell and F. Murphy, Beyond phycocyanin: Environmental life cycle assessment of a European pilot scale Spirulina biorefinery, Bioresource Technology Reports (2024), https://doi.org/10.1016/j.biteb.2025.102027
+- *Integration of a pilot scale Spirulina biorefinery into a local bioeconomy: Comparative life cycle assessment of potential environmental mitigation strategies (under review)*
 
 ### Schematic diagram of the SpiralG biorefinery:
 
