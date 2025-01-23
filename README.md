@@ -11,4 +11,4 @@ This repository contains all the **code, data, and documents required to reprodu
 
 ### Schematic diagram of the SpiralG biorefinery:
 
-[fig1.pdf](https://github.com/user-attachments/files/18519211/fig1.pdf)
+![schematic_diagram_BITEB_jan25](https://github.com/user-attachments/assets/ac8559b8-fe2d-4348-b36d-75f9dd6d09f3)
